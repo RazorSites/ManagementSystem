@@ -12,13 +12,14 @@ namespace ManagementSystem.Web.Data
     {
         public Salary Salary { get; set; }
 
-
         [ForeignKey("JobPosition")]
         public Guid JobPositionId { get; set; }
         public JobPosition JobPosition { get; set; }
 
-
         public ICollection<Announcement> Announcements { get; set; }
         public ICollection<Complaint> Complaints { get; set; }
+
+        public ICollection<TeamEnrollment> TeamEnrollments { get; set; }
+
     }
 }
