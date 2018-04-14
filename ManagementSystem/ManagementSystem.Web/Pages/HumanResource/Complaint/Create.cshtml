@@ -1,0 +1,57 @@
+﻿@page
+@model ManagementSystem.Web.Pages.HumanResource.Complaint.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Complaint</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Complaint.Subject" class="control-label"></label>
+                <input asp-for="Complaint.Subject" class="form-control" />
+                <span asp-validation-for="Complaint.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Complaint.Content" class="control-label"></label>
+                <input asp-for="Complaint.Content" class="form-control" />
+                <span asp-validation-for="Complaint.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Complaint.IsReviewed" /> @Html.DisplayNameFor(model => model.IsReviewed))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Complaint.IsAnonymous" /> @Html.DisplayNameFor(model => model.IsAnonymous))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Complaint.ApplicationUserId" class="control-label"></label>
+                <select asp-for="Complaint.ApplicationUserId" class ="form-control" asp-items="ViewBag.ApplicationUserId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

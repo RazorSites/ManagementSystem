@@ -7,10 +7,13 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <!-- Bootstrap core CSS -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="~/css/mdb.min.css" rel="stylesheet">
+    <!--  Material Dashboard CSS    -->
+    <link href="~/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!-- Custom style -->
     <link href="~/css/style.css" rel="stylesheet">
 </head>
@@ -79,17 +82,17 @@
     </main>
 
     @*<footer class="fixed-footer font-small black white-text">
-        <hr />
-        <div class="container">
-            <div class="d-flex justify-content-center mt-1 pb-1">
-                <a class="px-2 quonets-footer-link white-text" asp-page="/About">About</a>
-                <a class="px-2 quonets-footer-link white-text" asp-page="/Help">Help</a>
-                <a class="px-2 quonets-footer-link white-text" asp-page="/Sitemap">Sitemap</a>
-                <a class="px-2 quonets-footer-link white-text" asp-page="/Legal/Terms">Terms</a>
-                <p class="px-2" style="margin:0;">&copy; 2018 RazorSites.ManagementSystem</p>
+            <hr />
+            <div class="container">
+                <div class="d-flex justify-content-center mt-1 pb-1">
+                    <a class="px-2 quonets-footer-link white-text" asp-page="/About">About</a>
+                    <a class="px-2 quonets-footer-link white-text" asp-page="/Help">Help</a>
+                    <a class="px-2 quonets-footer-link white-text" asp-page="/Sitemap">Sitemap</a>
+                    <a class="px-2 quonets-footer-link white-text" asp-page="/Legal/Terms">Terms</a>
+                    <p class="px-2" style="margin:0;">&copy; 2018 RazorSites.ManagementSystem</p>
+                </div>
             </div>
-        </div>
-    </footer>*@
+        </footer>*@
 
 
     <!-- SCRIPTS -->
@@ -101,6 +104,20 @@
     <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="~/js/mdb.min.js"></script>
+
+    <script src="~/js/material.min.js" type="text/javascript"></script>
+    <!--  Charts Plugin -->
+    <script src="../assets/js/chartist.min.js"></script>
+    <!--  Dynamic Elements plugin -->
+    <script src="../assets/js/arrive.min.js"></script>
+    <!--  PerfectScrollbar Library -->
+    <script src="../assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../assets/js/bootstrap-notify.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Material Dashboard javascript methods -->
+    <script src="../assets/js/material-dashboard.js?v=1.2.0"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

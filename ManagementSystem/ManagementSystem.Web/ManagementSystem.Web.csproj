@@ -4,6 +4,12 @@
     <UserSecretsId>aspnet-ManagementSystem.Web-CD6DEF44-0C7E-4FCF-8F7E-FE32E3509E8A</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Data\Migrations\**" />
+    <Content Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
+    <None Remove="Data\Migrations\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
@@ -14,8 +20,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Pages\HumanResource\" />
     <Folder Include="Pages\Finance\" />
     <Folder Include="Pages\Product\" />
   </ItemGroup>
