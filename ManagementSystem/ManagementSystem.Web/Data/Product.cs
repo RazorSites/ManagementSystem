@@ -8,6 +8,7 @@ namespace ManagementSystem.Web.Data
     public class Product
     {
         public Guid Id { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
 
         #region Navigation Properties
