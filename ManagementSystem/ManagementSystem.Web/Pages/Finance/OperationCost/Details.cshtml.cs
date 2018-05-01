@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance
+namespace ManagementSystem.Web.Pages.Finance.OperationCost
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace ManagementSystem.Web.Pages.Finance
             _context = context;
         }
 
-        public OperationCost OperationCost { get; set; }
+        public Data.OperationCost OperationCost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance
+namespace ManagementSystem.Web.Pages.Finance.OperationCost
 {
     public class CreateModel : PageModel
     {
@@ -24,7 +24,7 @@ namespace ManagementSystem.Web.Pages.Finance
         }
 
         [BindProperty]
-        public OperationCost OperationCost { get; set; }
+        public Data.OperationCost OperationCost { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

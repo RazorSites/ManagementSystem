@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance
+namespace ManagementSystem.Web.Pages.Finance.OperationCost
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace ManagementSystem.Web.Pages.Finance
         }
 
         [BindProperty]
-        public OperationCost OperationCost { get; set; }
+        public Data.OperationCost OperationCost { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
