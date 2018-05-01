@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ManagementSystem.Web.Pages.Product
+namespace ManagementSystem.Web.Pages.Finance
 {
     public class IndexModel : PageModel
     {
         public void OnGet()
         {
-
+            SidebarManager.OnPage(Pages.Page.Finance);
         }
     }
 }
