@@ -11,7 +11,7 @@ namespace ManagementSystem.Web.Pages.Finance
     {
         public void OnGet()
         {
-
+            SidebarManager.OnPage(Pages.Page.Finance);
         }
     }
 }

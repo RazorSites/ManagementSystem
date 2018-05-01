@@ -11,7 +11,7 @@ namespace ManagementSystem.Web.Pages
     {
         public void OnGet()
         {
-
+            SidebarManager.OnPage(Pages.Page.Dashboard);
         }
     }
 }
