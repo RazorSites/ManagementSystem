@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManagementSystem.Web.Pages.Product
 {
@@ -20,7 +21,9 @@ namespace ManagementSystem.Web.Pages.Product
 
         public void OnGet()
         {
-            Products = dbContext.Products.ToList();
+            Products = dbContext.Products
+                .Include(p => p.Builds)
+                .ToList();
         }
     }
 }

@@ -9,11 +9,11 @@ using ManagementSystem.Web.Data;
 
 namespace ManagementSystem.Web.Pages.Product
 {
-    public class AddModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly ManagementSystem.Web.Data.ApplicationDbContext _context;
 
-        public AddModel(ManagementSystem.Web.Data.ApplicationDbContext context)
+        public CreateModel(ManagementSystem.Web.Data.ApplicationDbContext context)
         {
             _context = context;
         }

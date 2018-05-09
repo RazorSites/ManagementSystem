@@ -1,0 +1,107 @@
+﻿@page
+@model ManagementSystem.Web.Pages.Product.Analytics.IndexModel
+
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h2>Analytics</h2>
+    </div>
+
+    <div>
+        <h3>Projects By Month</h3>
+        <div id="byMonthChart" class="ct-chart ct-perfect-fourth"></div>
+        <div class="text-center"><p>@DateTime.UtcNow.Year</p></div>
+    </div>
+
+    <div>
+        <h3>New Projects By Month</h3>
+        <div id="newByMonthChart" class="ct-chart ct-perfect-fourth"></div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <i class="material-icons m-2" style="font-size:30px;">bar_chart</i>
+                <div class="d-flex flex-column">
+                    <a asp-page="" class="h4">Projects By Month</a>
+                    <p>Track the total amount of projects your company is working with.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <i class="material-icons m-2" style="font-size:30px;">bar_chart</i>
+                <div class="d-flex flex-column">
+                    <a asp-page="" class="h4">New Projects By Month</a>
+                    <p>Track the velocity of your company.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <i class="material-icons m-2" style="font-size:30px;">bar_chart</i>
+                <div class="d-flex flex-column">
+                    <a asp-page="" class="h4">Team Throughput</a>
+                    <p>Track how much work your teams are doing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        var data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            series: [
+                [5, 4, 3, 7, 5, 2, 3, 4, 8, 3, 6, 1],
+            ]
+        };
+
+        var options = {
+            seriesBarDistance: 15
+        };
+
+        var responsiveOptions = [
+            ['screen and (min-width: 641px) and (max-width: 1024px)', {
+                seriesBarDistance: 10,
+                axisX: {
+                    labelInterpolationFnc: function (value) {
+                        return value;
+                    }
+                }
+            }],
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 5,
+                axisX: {
+                    labelInterpolationFnc: function (value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+
+        new Chartist.Bar('#byMonthChart', data, options, responsiveOptions);
+    </script>
+
+    <script>
+        var data = {
+            // A labels array that can contain any sort of values
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Oct', 'Nov', 'Dec'],
+            // Our series array that contains series objects or in this case series data arrays
+            series: [
+                [2, 2, 4, 2, 3, 5, 1, 1, 0, 2, 0, 0]
+            ]
+        };
+
+        // Create a new line chart object where as first parameter we pass in a selector
+        // that is resolving to our chart container element. The Second parameter
+        // is the actual data object.
+        new Chartist.Line('#newByMonthChart', data);
+    </script>
+}

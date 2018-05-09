@@ -7,7 +7,7 @@
 <div class="container">
     <div class="d-flex justify-content-between">
         <h2>Product Management Dashboard</h2>
-        <div class="align-self-center"><a asp-page="./Add" class="btn btn-primary">New Product</a></div>
+        <div class="align-self-center"><a asp-page="./Create" class="btn btn-primary">New Product</a></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -39,108 +39,128 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        Dakota Rice
-                                    </td>
-                                    <td>
-                                        Niger
-                                    </td>
-                                    <td>
-                                        Oud-Turnhout
-                                    </td>
-                                    <td class="text-primary">
-                                        $36,738
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-primary">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-primary">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        Philip Chaney
-                                    </td>
-                                    <td>
-                                        Korea, South
-                                    </td>
-                                    <td>
-                                        Overland Park
-                                    </td>
-                                    <td class="text-primary">
-                                        $38,735
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        5
-                                    </td>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-primary">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        6
-                                    </td>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-primary">
-                                        $78,615
-                                    </td>
-                                </tr>
+                                @foreach (var product in Model.Products)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@product.Id">@product.Title</a>
+                                        </td>
+                                        <td>
+                                            @product.Description
+                                        </td>
+                                        <td>
+                                            @product.Builds.LastOrDefault()
+                                        </td>
+                                        <td>
+                                            Unassigned.
+                                        </td>
+                                        <td>
+                                            Uncalculated.
+                                        </td>
+                                    </tr>
+                                }
+                                @*<tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-primary">
+                                            $36,738
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td class="text-primary">
+                                            $23,789
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            Sage Rodriguez
+                                        </td>
+                                        <td>
+                                            Netherlands
+                                        </td>
+                                        <td>
+                                            Baileux
+                                        </td>
+                                        <td class="text-primary">
+                                            $56,142
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            Philip Chaney
+                                        </td>
+                                        <td>
+                                            Korea, South
+                                        </td>
+                                        <td>
+                                            Overland Park
+                                        </td>
+                                        <td class="text-primary">
+                                            $38,735
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            Doris Greene
+                                        </td>
+                                        <td>
+                                            Malawi
+                                        </td>
+                                        <td>
+                                            Feldkirchen in Kärnten
+                                        </td>
+                                        <td class="text-primary">
+                                            $63,542
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            6
+                                        </td>
+                                        <td>
+                                            Mason Porter
+                                        </td>
+                                        <td>
+                                            Chile
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td class="text-primary">
+                                            $78,615
+                                        </td>
+                                    </tr>*@
                             </tbody>
                         </table>
                     </div>
@@ -286,5 +306,7 @@
             </div>
         </div>
     </div>
+
 </div>
+
 
