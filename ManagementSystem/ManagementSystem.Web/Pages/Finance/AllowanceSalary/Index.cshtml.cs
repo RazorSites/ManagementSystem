@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance
+namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
 {
     public class IndexModel : PageModel
     {
@@ -17,13 +18,13 @@ namespace ManagementSystem.Web.Pages.Finance
             _context = context;
         }
 
-        public IList<Data.OperationCost> OperationCost { get; set; }
+        public IList<Data.AllowanceSalary> AllowanceSalary { get;set; }
 
         public async Task OnGetAsync()
         {
-            SidebarManager.OnPage(Pages.Page.Finance);
-
-            OperationCost = await _context.OperationCosts.ToListAsync();
+            AllowanceSalary = await _context.AllowanceSalaries
+                .Include(a => a.Allowance)
+                .Include(a => a.Salary).ToListAsync();
         }
     }
 }
