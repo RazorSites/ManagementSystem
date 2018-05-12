@@ -20,7 +20,15 @@
                 <div class="d-flex justify-content-between">
                     <div class="col">
                         <h4 class="card-title">Operation costs</h4>
-                        <p class="card-category">Latest cost on @Model.OperationCost.LastOrDefault().Time.ToString("MMM, dd yyyy")</p>
+                        @if (Model.OperationCost.LastOrDefault() != null)
+                        {
+                            <p class="card-category">Latest cost on @Model.OperationCost.LastOrDefault().Time.ToString("MMM, dd yyyy")</p>
+                        }
+                        else
+                        {
+                            <p class="card-category">No Data.</p>
+                        }
+
                     </div>
                     <div class="align-self-center"><a href="~/Finance/OperationCost" class="btn btn-orange">More detail</a></div>
                 </div>
@@ -79,7 +87,15 @@
             <div class="d-flex justify-content-between">
                 <div class="col">
                     <h4 class="card-title">Allowance Salaries</h4>
-                    <p class="card-category">Newest on @Model.OperationCost.LastOrDefault().Time.ToString("MMM, dd yyyy")</p>
+                    @if (Model.OperationCost.LastOrDefault() != null)
+                    {
+                        <p class="card-category">Newest on @Model.OperationCost.LastOrDefault().Time.ToString("MMM, dd yyyy")</p>
+                    }
+                    else
+                    {
+                        <p class="card-category">No Data.</p>
+                    }
+
                 </div>
                 <div class="align-self-center"><a href="/Finance/AllowanceSalary" class="btn btn-outline-white">More detail</a></div>
             </div>
