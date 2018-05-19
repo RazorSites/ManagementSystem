@@ -12,7 +12,5 @@ namespace ManagementSystem.Web.Data
         [ForeignKey("ApplicationUser")]
         public Guid ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
-        public ICollection<AllowanceSalary> AllowanceSalaries { get; set; }
     }
 }

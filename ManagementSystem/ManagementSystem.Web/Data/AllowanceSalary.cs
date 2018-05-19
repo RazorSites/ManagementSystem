@@ -9,9 +9,9 @@ namespace ManagementSystem.Web.Data
         public int Count { get; set; }
         public DateTime ReceivedDay { get; set; }
 
-        [ForeignKey("Salary")]
-        public Guid SalaryId { get; set; }
-        public Salary Salary { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public Guid ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [ForeignKey("Allowance")]
         public Guid AllowanceId { get; set; }

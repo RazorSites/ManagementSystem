@@ -24,7 +24,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
         {
             AllowanceSalary = await _context.AllowanceSalaries
                 .Include(a => a.Allowance)
-                .Include(a => a.Salary).ToListAsync();
+                .Include(a => a.ApplicationUser).ToListAsync();
         }
     }
 }

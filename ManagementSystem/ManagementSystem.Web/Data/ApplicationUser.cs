@@ -18,8 +18,7 @@ namespace ManagementSystem.Web.Data
 
         public ICollection<Announcement> Announcements { get; set; }
         public ICollection<Complaint> Complaints { get; set; }
-
         public ICollection<TeamEnrollment> TeamEnrollments { get; set; }
-
+        public ICollection<AllowanceSalary> AllowanceSalaries { get; set; } 
     }
 }

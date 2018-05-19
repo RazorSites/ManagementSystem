@@ -30,7 +30,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
 
             AllowanceSalary = await _context.AllowanceSalaries
                 .Include(a => a.Allowance)
-                .Include(a => a.Salary).SingleOrDefaultAsync(m => m.Id == id);
+                .Include(a => a.ApplicationUser).SingleOrDefaultAsync(m => m.Id == id);
 
             if (AllowanceSalary == null)
             {
