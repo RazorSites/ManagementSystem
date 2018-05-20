@@ -11,9 +11,10 @@ using System;
 namespace ManagementSystem.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180519113732_Fix-Gender-Type")]
+    partial class FixGenderType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,8 +84,6 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<decimal>("BaseSalary");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -93,18 +92,15 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("IdentityCard")
-                        .IsRequired();
+                    b.Property<string>("IdentityCard");
 
                     b.Property<bool>("IsLady");
 
                     b.Property<Guid>("JobPositionId");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -317,6 +313,23 @@ namespace ManagementSystem.Web.Migrations
                     b.ToTable("Report");
                 });
 
+            modelBuilder.Entity("ManagementSystem.Web.Data.Salary", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("ApplicationUserId");
+
+                    b.Property<decimal>("BaseSalary");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("Salaries");
+                });
+
             modelBuilder.Entity("ManagementSystem.Web.Data.Team", b =>
                 {
                     b.Property<Guid>("Id")
@@ -524,6 +537,14 @@ namespace ManagementSystem.Web.Migrations
                     b.HasOne("ManagementSystem.Web.Data.Build", "Build")
                         .WithMany("Reports")
                         .HasForeignKey("BuildId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ManagementSystem.Web.Data.Salary", b =>
+                {
+                    b.HasOne("ManagementSystem.Web.Data.ApplicationUser", "ApplicationUser")
+                        .WithOne("Salary")
+                        .HasForeignKey("ManagementSystem.Web.Data.Salary", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

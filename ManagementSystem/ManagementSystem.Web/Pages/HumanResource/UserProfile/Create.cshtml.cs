@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
+namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {
     public class CreateModel : PageModel
     {
@@ -20,13 +20,12 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
 
         public IActionResult OnGet()
         {
-        ViewData["AllowanceId"] = new SelectList(_context.Allowwances, "Id", "Id");
-        ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            ViewData["JobPosition"] = new SelectList(_context.JobPositions, "Id", "Name");
             return Page();
         }
 
         [BindProperty]
-        public Data.AllowanceSalary AllowanceSalary { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,7 +34,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
                 return Page();
             }
 
-            _context.AllowanceSalaries.Add(AllowanceSalary);
+            _context.ApplicationUsers.Add(ApplicationUser);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

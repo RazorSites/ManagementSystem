@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
+namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
         }
 
         [BindProperty]
-        public Data.AllowanceSalary AllowanceSalary { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,16 +29,15 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
                 return NotFound();
             }
 
-            AllowanceSalary = await _context.AllowanceSalaries
-                .Include(a => a.Allowance)
-                .Include(a => a.ApplicationUser).SingleOrDefaultAsync(m => m.Id == id);
+            ApplicationUser = await _context.ApplicationUsers
+                .Include(a => a.JobPosition).SingleOrDefaultAsync(m => m.Id == id);
 
-            if (AllowanceSalary == null)
+            if (ApplicationUser == null)
             {
                 return NotFound();
             }
-           ViewData["AllowanceId"] = new SelectList(_context.Allowwances, "Id", "Id");
-           ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            ViewData["JobPosition"] = new SelectList(_context.JobPositions, "Id", "Name");
+
             return Page();
         }
 
@@ -49,7 +48,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
                 return Page();
             }
 
-            _context.Attach(AllowanceSalary).State = EntityState.Modified;
+            _context.Attach(ApplicationUser).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +56,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AllowanceSalaryExists(AllowanceSalary.Id))
+                if (!ApplicationUserExists(ApplicationUser.Id))
                 {
                     return NotFound();
                 }
@@ -70,9 +69,9 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
             return RedirectToPage("./Index");
         }
 
-        private bool AllowanceSalaryExists(Guid id)
+        private bool ApplicationUserExists(Guid id)
         {
-            return _context.AllowanceSalaries.Any(e => e.Id == id);
+            return _context.ApplicationUsers.Any(e => e.Id == id);
         }
     }
 }

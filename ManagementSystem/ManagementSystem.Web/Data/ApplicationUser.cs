@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,21 +11,24 @@ namespace ManagementSystem.Web.Data
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser<Guid>
     {
-        public enum Genders
-        {
-            Lady,
-            Gentleman            
-        }
-
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required, DataType(DataType.CreditCard)]
         public string IdentityCard { get; set; }
-        public Genders Gender { get; set; }
+
+        public bool IsLady { get; set; }
+
         public string Address { get; set; }
+
+        [Range(1900, 3000)]
         public int YearOfBirth { get; set; }
 
-
-        public Salary Salary { get; set; }
+        [Required]
+        public decimal BaseSalary { get; set; }
 
         [ForeignKey("JobPosition")]
         public Guid JobPositionId { get; set; }
