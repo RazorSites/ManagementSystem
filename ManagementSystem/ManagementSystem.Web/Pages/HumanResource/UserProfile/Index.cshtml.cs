@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
+using Microsoft.AspNetCore.Routing;
 
 namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {

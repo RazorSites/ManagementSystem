@@ -55,28 +55,28 @@
 
                                 foreach (var item in Model.ApplicationUser)
                                 {
-                            <tr>
-                                <td>
-                                    @index
-                                </td>
-                                <td>
-                                    @(item.FirstName + " " + item.LastName)
-                                </td>
-                                <td>
-                                    @item.Email
-                                </td>
-                                <td>
-                                    @item.PhoneNumber
-                                </td>
-                                <td>
-                                    @item.JobPosition.Name
-                                </td>
-                                <td class="td-actions">
-                                    <a asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    <tr onclick="location.href = '@(Url.Content("UserProfile/Details?id=" + item.Id))'"> @*FUCKOFF*@
+                                        <td>
+                                            @index
+                                        </td>
+                                        <td>
+                                            @(item.FirstName + " " + item.LastName)
+                                        </td>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            @item.PhoneNumber
+                                        </td>
+                                        <td>
+                                            @item.JobPosition.Name
+                                        </td>
+                                        <td class="td-actions">
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">
+                                                <i class="material-icons">edit</i>
+                                            </a>
+                                        </td>
+                                    </tr>
 
 
                                     index++;
@@ -89,4 +89,3 @@
         </div>
     </div>
 </div>
-

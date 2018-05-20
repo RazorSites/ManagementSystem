@@ -58,8 +58,11 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input asp-for="ApplicationUser.IsLady" /> @Html.DisplayNameFor(model => model.ApplicationUser.IsLady)
+                                            @Html.DisplayNameFor(model => model.ApplicationUser.IsLady)
                                         </label>
+                                        <p>
+                                            <input asp-for="ApplicationUser.IsLady"/>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
