@@ -11,9 +11,10 @@ using System;
 namespace ManagementSystem.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180521052119_Fix-Nullable")]
+    partial class FixNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +102,7 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<bool>("IsLady");
 
-                    b.Property<Guid?>("JobPositionId");
+                    b.Property<Guid>("JobPositionId");
 
                     b.Property<string>("LastName")
                         .IsRequired();
@@ -478,7 +479,8 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.HasOne("ManagementSystem.Web.Data.JobPosition", "JobPosition")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("JobPositionId");
+                        .HasForeignKey("JobPositionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Build", b =>

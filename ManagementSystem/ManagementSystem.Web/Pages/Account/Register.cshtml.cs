@@ -65,7 +65,7 @@ namespace ManagementSystem.Web.Pages.Account
             ReturnUrl = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = "", LastName = "", IdentityCard = "", BaseSalary = 0 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

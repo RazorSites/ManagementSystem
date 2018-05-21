@@ -12,7 +12,7 @@ namespace ManagementSystem.Web.Data
         public bool IsAnonymous { get; set; }
 
         [ForeignKey("ApplicationUser")]
-        public Guid ApplicationUserId { get; set; }
+        public Guid? ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
 }

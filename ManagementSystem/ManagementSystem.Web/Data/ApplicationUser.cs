@@ -25,13 +25,13 @@ namespace ManagementSystem.Web.Data
         public string Address { get; set; }
 
         [Range(1900, 3000)]
-        public int YearOfBirth { get; set; }
+        public int? YearOfBirth { get; set; }
 
         [Required]
         public decimal BaseSalary { get; set; }
 
         [ForeignKey("JobPosition")]
-        public Guid JobPositionId { get; set; }
+        public Guid? JobPositionId { get; set; }
         public JobPosition JobPosition { get; set; }
 
         public ICollection<Announcement> Announcements { get; set; }

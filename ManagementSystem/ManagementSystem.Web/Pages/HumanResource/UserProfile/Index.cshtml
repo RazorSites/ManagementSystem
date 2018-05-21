@@ -15,11 +15,6 @@
 }
 
 <div class="container">
-    <div class="d-flex justify-content-between">
-        <h2></h2>
-        <div class="align-self-center"><a asp-page="./Create" class="btn btn-primary">New Employee</a></div>
-    </div>
-
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
@@ -69,7 +64,7 @@
                                             @item.PhoneNumber
                                         </td>
                                         <td>
-                                            @item.JobPosition.Name
+                                            @( item.JobPosition != null ? item.JobPosition.Name : "")
                                         </td>
                                         <td class="td-actions">
                                             <a asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">
