@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ManagementSystem.Web.Data;
+using ManagementSystem.Web.Pages.HumanResource.Complaint;
 
 namespace ManagementSystem.Web.Pages.Account
 {
@@ -73,6 +74,7 @@ namespace ManagementSystem.Web.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    Util.myEmail = Input.Email;
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(Url.GetLocalUrl(returnUrl));
                 }

@@ -13,5 +13,40 @@
     </style>
 }
 
-<h2>Index</h2>
+    <div class="row container-fluid">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                    <div onclick="location.href = '@Url.Content("HumanResource/UserProfile")'" class="card-icon btn" style="font-size:36px; line-height:56px; width:90px; height:90px; text-align:center">
+                        <i class="material-icons">person_outline</i>
+                    </div>
+                    <p class="card-category">Employees</p>
+                    <h3 class="card-title">+@Model.CountEmployees</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                    <div onclick="location.href = '@Url.Content("HumanResource/Complaint")'" class="card-icon btn" style="font-size:36px; line-height:56px; width:90px; height:90px; text-align:center">
+                        <i class="material-icons">info_outline</i>
+                        <a href="HumanResource/Complaint"></a>
+                    </div>
+                    <p class="card-category">Complaints</p>
+                    <h3 class="card-title">@Model.CountComplaints</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 

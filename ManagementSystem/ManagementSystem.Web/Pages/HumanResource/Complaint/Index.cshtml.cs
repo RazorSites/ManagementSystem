@@ -18,12 +18,48 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
             _context = context;
         }
 
-        public IList<Data.Complaint> Complaint { get;set; }
+        public IList<Data.Complaint> Complaint { get; set; }
 
         public async Task OnGetAsync()
         {
             Complaint = await _context.Complaints
                 .Include(c => c.ApplicationUser).ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Util.complaintHandling.IsReviewed = true;
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(Util.complaintHandling).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ComplaintExists(Util.complaintHandling.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool ComplaintExists(Guid id)
+        {
+            return _context.Complaints.Any(e => e.Id == id);
+        }
+
     }
 }

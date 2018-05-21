@@ -18,12 +18,6 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-        ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            return Page();
-        }
-
         [BindProperty]
         public Data.Complaint Complaint { get; set; }
 
@@ -39,5 +33,15 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
 
             return RedirectToPage("./Index");
         }
+
+        public Data.ApplicationUser CurrentUser { get; set; }
+
+        public IActionResult OnGet()
+        {
+            CurrentUser = _context.ApplicationUsers.FirstOrDefault(u => u.Email == Util.myEmail);
+
+            return Page();
+        }
+
     }
 }

@@ -35,7 +35,7 @@ namespace ManagementSystem.Web.Pages
             }
         }
 
-        public static String GetClass(Page page)
+        public static string GetClass(Page page)
         {
             switch (page)
             {
