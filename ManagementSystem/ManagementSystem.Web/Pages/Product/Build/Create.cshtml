@@ -1,0 +1,48 @@
+﻿@page
+@model ManagementSystem.Web.Pages.Product.Build.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <h2>Create</h2>
+
+    <h4>Build</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Build.Name" class="control-label"></label>
+                    <input asp-for="Build.Name" class="form-control" />
+                    <span asp-validation-for="Build.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Build.Created" class="control-label"></label>
+                    <input asp-for="Build.Created" class="form-control" />
+                    <span asp-validation-for="Build.Created" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="Build.ProductId" class="control-label"></label>
+                    <select id="productIdSelect" asp-for="Build.ProductId" class="form-control" asp-items="ViewBag.ProductId" disabled></select>
+                </div>*@
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-page="Index">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @*<script>
+        $("productIdSelect").val("@Model.ProductId");
+    </script>*@
+}

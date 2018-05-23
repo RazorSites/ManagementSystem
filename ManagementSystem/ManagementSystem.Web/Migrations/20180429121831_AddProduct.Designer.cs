@@ -11,9 +11,10 @@ using System;
 namespace ManagementSystem.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180429121831_AddProduct")]
+    partial class AddProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,8 +135,6 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Created");
-
                     b.Property<string>("Name");
 
                     b.Property<Guid>("ProductId");
@@ -144,7 +143,7 @@ namespace ManagementSystem.Web.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Builds");
+                    b.ToTable("Build");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Complaint", b =>
@@ -244,8 +243,6 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<string>("Description");
 
