@@ -23,5 +23,6 @@
     <Folder Include="Pages\Finance\" />
     <Folder Include="Pages\Product\Report\" />
     <Folder Include="Pages\Product\Team\" />
+    <Folder Include="Pages\Product\" />
   </ItemGroup>
 </Project>

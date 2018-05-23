@@ -9,3 +9,6 @@ html, body {
     height: 60px;
 }
 
+.padding-top {
+    padding-top: 4em;
+}
