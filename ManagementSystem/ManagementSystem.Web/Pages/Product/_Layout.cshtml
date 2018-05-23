@@ -2,7 +2,7 @@
     Layout = "/Pages/_Layout.cshtml";
 }
 @section Styles {
-   
+    @RenderSection("Styles", required: false);
 }
 
 <div class="wrapper">
@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li id="analytics_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Analytics/Index">
+                    <a class="nav-link" asp-page="./Analytics/Index" asp-route-year="@DateTime.Now.Year">
                         <i class="material-icons">assessment</i>
                         <p>Analytics</p>
                     </a>

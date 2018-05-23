@@ -2,13 +2,16 @@
 @model ManagementSystem.Web.Pages.Product.DetailsModel
 
 <div class="container">
-    <div>
+    <div class="">
         <div class="d-flex justify-content-md-start align-content-center">
             <div>
                 <a asp-page="./Index" class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
             <h2 class="ml-2">Product</h2>
         </div>
+
+    </div>
+    <div>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -33,5 +36,58 @@
     </div>
     <div>
         <a asp-page="./Edit" asp-route-id="@Model.Product.Id">Edit</a>
+    </div>
+
+    <hr />
+
+    <div class="">
+        <div class="d-flex justify-content-between">
+            <h2>Builds</h2>
+            <div class="align-self-center">
+                <a asp-page="./Build/Create" asp-route-productId="@Model.Product.Id"
+                   class="btn btn-primary waves-effect waves-light">New Build</a>
+            </div>
+        </div>
+        @if (Model.Builds.Count == 0)
+        {
+            <h4>There is no build recorded yet.</h4>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Builds[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Builds[0].Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Builds)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-page="/Dashboard/Build/Details" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <a asp-page="./Report/Create" asp-route-id="@item.Id">Add reports</a> |
+                                <a asp-page="./Build/Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+
     </div>
 </div>

@@ -19,6 +19,7 @@ namespace ManagementSystem.Web.Pages.Product
         }
 
         public Data.Product Product { get; set; }
+        public List<Data.Build> Builds { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -33,6 +34,9 @@ namespace ManagementSystem.Web.Pages.Product
             {
                 return NotFound();
             }
+
+            Builds = _context.Builds.Where(b => b.ProductId == id).ToList();
+
             return Page();
         }
     }

@@ -1,21 +1,29 @@
 ﻿@page
 @model ManagementSystem.Web.Pages.Product.Analytics.IndexModel
 
+@section Styles{
+    <style>
+        .ct-chart .ct-series-a .ct-bar {
+            stroke: chocolate;
+        }
+    </style>
+}
+
 <div class="container">
     <div class="d-flex justify-content-between">
         <h2>Analytics</h2>
     </div>
 
-    <div>
-        <h3>Projects By Month</h3>
-        <div id="byMonthChart" class="ct-chart ct-perfect-fourth"></div>
+    <div class="my-3">
+        <h3>New Projects By Month</h3>
+        <div id="byMonthChart" class="ct-chart ct-perfect-fourth mt-5"></div>
         <div class="text-center"><p>@DateTime.UtcNow.Year</p></div>
     </div>
 
-    <div>
+    @*<div>
         <h3>New Projects By Month</h3>
         <div id="newByMonthChart" class="ct-chart ct-perfect-fourth"></div>
-    </div>
+    </div>*@
 
 
     <div class="card">
@@ -59,12 +67,26 @@
         var data = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             series: [
-                [5, 4, 3, 7, 5, 2, 3, 4, 8, 3, 6, 1],
+                [
+                    @Model.ProjectByMonthChartModelList[0].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[1].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[2].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[3].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[4].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[5].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[6].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[7].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[8].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[9].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[10].NumberOfProducts,
+                    @Model.ProjectByMonthChartModelList[11].NumberOfProducts
+                ],
             ]
         };
 
         var options = {
-            seriesBarDistance: 15
+            seriesBarDistance: 15,
+            chartPadding: 20,
         };
 
         var responsiveOptions = [
@@ -89,7 +111,7 @@
         new Chartist.Bar('#byMonthChart', data, options, responsiveOptions);
     </script>
 
-    <script>
+    @*<script>
         var data = {
             // A labels array that can contain any sort of values
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Oct', 'Nov', 'Dec'],
@@ -102,6 +124,8 @@
         // Create a new line chart object where as first parameter we pass in a selector
         // that is resolving to our chart container element. The Second parameter
         // is the actual data object.
-        new Chartist.Line('#newByMonthChart', data);
-    </script>
+        new Chartist.Line('#newByMonthChart', data, {
+            chartPadding: 20
+        });
+    </script>*@
 }
