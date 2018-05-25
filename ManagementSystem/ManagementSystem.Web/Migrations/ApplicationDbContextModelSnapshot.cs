@@ -151,6 +151,8 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Name");
 
                     b.Property<Guid>("ProductId");
@@ -159,7 +161,7 @@ namespace ManagementSystem.Web.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Build");
+                    b.ToTable("Builds");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Complaint", b =>
@@ -260,11 +262,15 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Description");
+
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.ProductEnrollment", b =>

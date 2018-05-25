@@ -10,13 +10,14 @@ namespace ManagementSystem.Web.Pages
         public static bool isOnDashboard;
         public static bool isOnFinance;
         public static bool isOnPersonnel;
-
+        public static bool isOnProduct;
 
         public static void OnPage(Page page)
         {
             isOnDashboard = false;
             isOnFinance = false;
             isOnPersonnel = false;
+            isOnProduct = false; 
 
             switch (page)
             {
@@ -25,6 +26,9 @@ namespace ManagementSystem.Web.Pages
                     break;
                 case Page.Finance:
                     isOnFinance = true;
+                    break;
+                case Page.Product:
+                    isOnProduct = true;
                     break;
                 case Page.Personnel:
                     isOnPersonnel = true;
@@ -45,7 +49,8 @@ namespace ManagementSystem.Web.Pages
                     return isOnFinance == true ? "active" : "";
                 case Page.Personnel:
                     return isOnPersonnel == true ? "active" : "";
-
+                case Page.Product:
+                    return isOnProduct == true ? "active" : "";
                 default:
                     break;
             }
@@ -57,6 +62,7 @@ namespace ManagementSystem.Web.Pages
     public enum Page {
         Dashboard,
         Personnel,
-        Finance
+        Finance,
+        Product
     };
 }

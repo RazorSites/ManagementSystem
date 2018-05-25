@@ -1,40 +1,42 @@
 ﻿@page
 @model ManagementSystem.Web.Pages.Finance.AllowanceSalary.DeleteModel
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>AllowanceSalary</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AllowanceSalary.Count)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AllowanceSalary.Count)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AllowanceSalary.ReceivedDay)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AllowanceSalary.ReceivedDay)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AllowanceSalary.Allowance)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AllowanceSalary.Allowance.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AllowanceSalary.ApplicationUser)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AllowanceSalary.ApplicationUserId)
-        </dd>
-    </dl>
-    
-    <form method="post">
-        <input type="hidden" asp-for="AllowanceSalary.Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-page="./Index">Back to List</a>
-    </form>
+<div class="container">
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>AllowanceSalary</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AllowanceSalary.Count)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AllowanceSalary.Count)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AllowanceSalary.ReceivedDay)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AllowanceSalary.ReceivedDay)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AllowanceSalary.Allowance)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AllowanceSalary.Allowance.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AllowanceSalary.ApplicationUser)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AllowanceSalary.ApplicationUserId)
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="AllowanceSalary.Id" />
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to List</a>
+        </form>
+    </div>
 </div>

@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ManagementSystem.Web.Data;
 
 namespace ManagementSystem.Web.Data
 {
@@ -33,12 +34,17 @@ namespace ManagementSystem.Web.Data
         public DbSet<OperationCost> OperationCosts { get; set; }
         #endregion
 
-        
+
         #region HR
         public DbSet<JobPosition> JobPositions { get; set; }
         public DbSet<JobDescription> JobDescriptions { get; set; }
         public DbSet<Complaint> Complaints { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
+        #endregion
+
+        #region Product Management
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Build> Builds { get; set; }
         #endregion
     }
 }

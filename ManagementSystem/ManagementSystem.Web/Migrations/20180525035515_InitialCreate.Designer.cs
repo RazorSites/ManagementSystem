@@ -11,8 +11,8 @@ using System;
 namespace ManagementSystem.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180520084253_Add-Attribution-Delete-Salary")]
-    partial class AddAttributionDeleteSalary
+    [Migration("20180525035515_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,7 +102,7 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<bool>("IsLady");
 
-                    b.Property<Guid>("JobPositionId");
+                    b.Property<Guid?>("JobPositionId");
 
                     b.Property<string>("LastName")
                         .IsRequired();
@@ -130,7 +130,7 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
-                    b.Property<int>("YearOfBirth");
+                    b.Property<int?>("YearOfBirth");
 
                     b.HasKey("Id");
 
@@ -152,6 +152,8 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Name");
 
                     b.Property<Guid>("ProductId");
@@ -160,7 +162,7 @@ namespace ManagementSystem.Web.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Build");
+                    b.ToTable("Builds");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Complaint", b =>
@@ -168,7 +170,7 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("ApplicationUserId");
+                    b.Property<Guid?>("ApplicationUserId");
 
                     b.Property<string>("Content");
 
@@ -261,11 +263,15 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Created");
+
                     b.Property<string>("Description");
+
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.ProductEnrollment", b =>
@@ -479,8 +485,7 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.HasOne("ManagementSystem.Web.Data.JobPosition", "JobPosition")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("JobPositionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("JobPositionId");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Build", b =>
@@ -495,8 +500,7 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.HasOne("ManagementSystem.Web.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Complaints")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.PaymentMilestone", b =>

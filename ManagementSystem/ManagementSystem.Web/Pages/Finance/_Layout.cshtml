@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "/Pages/_Layout.cshtml";
+}
+@section Styles {
+    @RenderSection("Styles", required: false)
+}
+
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                Management System
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li id="dashboard_li" class="nav-item active">
+                    <a class="nav-link" asp-page="/Finance/Index">
+                        <i class="material-icons">dashboard</i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li id="operation_cost_li" class="nav-item ">
+                    <a class="nav-link" asp-page="./OperationCost/Index">
+                        <i class="material-icons">card_travel</i>
+                        <p>Operational Cost</p>
+                    </a>
+                </li>
+                <li id="salary_li" class="nav-item ">
+                    <a class="nav-link" asp-page="./AllowanceSalary/Index">
+                        <i class="material-icons">attach_money</i>
+                        <p>Salaries &amp; Allowances</p>
+                    </a>
+                </li>
+                @*<li id="report_li" class="nav-item ">
+                        <a class="nav-link" asp-page="./Report">
+                            <i class="material-icons">bug_report</i>
+                            <p>Reports</p>
+                        </a>
+                    </li>
+                    <li id="team_li" class="nav-item ">
+                        <a class="nav-link" asp-page="./Team">
+                            <i class="material-icons">people</i>
+                            <p>Teams</p>
+                        </a>
+                    </li>*@
+                <li id="analytics_li" class="nav-item ">
+                    <a class="nav-link" asp-page="./Analytics/Index" asp-route-year="@DateTime.Now.Year">
+                        <i class="material-icons">assessment</i>
+                        <p>Analytics</p>
+                    </a>
+                </li>
+                <li id="team_li" class="nav-item ">
+                    <a class="nav-link" asp-page="/Index">
+                        <i class="material-icons">arrow_back</i>
+                        <p>Back to Main Dashboard</p>
+                    </a>
+                </li>
+
+                @*<li class="nav-item active-pro">
+                        <a class="nav-link" href="../examples/upgrade.html">
+                            <i class="material-icons">unarchive</i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>*@
+            </ul>
+        </div>
+    </div>
+    <div class="padding-top">
+        @RenderBody()
+    </div>
+
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false);
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+}

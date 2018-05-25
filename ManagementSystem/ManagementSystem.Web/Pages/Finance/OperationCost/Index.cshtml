@@ -2,82 +2,73 @@
 @model ManagementSystem.Web.Pages.Finance.OperationCost.IndexModel
 
 
-@section Styles
-    {
-    <style>
-        body {
-            padding-top: 4em;
-        }
-    </style>
-}
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h2>Operational Costs</h2>
+        <div class="align-self-center"><a asp-page="./Create" class="btn btn-primary">New Transaction</a></div>
+    </div>
 
-    <div class="container">
-        <div class="d-flex justify-content-between">
-            <h2></h2>
-            <div class="align-self-center"><a asp-page="./Create" class="btn btn-primary">New Transaction</a></div>
-        </div>
+    <div class="col-md-12">
+        <div class="card card-plain">
+            <div class="card-header card-header-primary">
+                <h4 class="card-title mt-0">Operation Cost Transactions</h4>
+                <p class="card-category">This table is all history operation cost transactions of company</p>
+            </div>
 
-        <div class="col-md-12">
-            <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                    <h4 class="card-title mt-0">Operation Cost Transactions</h4>
-                    <p class="card-category">This table is all history operation cost transactions of company</p>
-                </div>
-                
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="">
-                                <tr>
-                                    <th>
-                                        Index
-                                    </th>
-                                    <th>
-                                        Time
-                                    </th>
-                                    <th>
-                                        Reason
-                                    </th>
-                                    <th>
-                                        Amount
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    int index = 1;
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="">
+                            <tr>
+                                <th>
+                                    Index
+                                </th>
+                                <th>
+                                    Time
+                                </th>
+                                <th>
+                                    Reason
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int index = 1;
 
-                                    foreach (var item in Model.OperationCost)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @index
-                                            </td>
-                                            <td>
-                                                @item.Time
-                                            </td>
-                                            <td>
-                                                @item.Reason
-                                            </td>
-                                            <td>
-                                                @item.Amount
-                                            </td>
-                                            <td class="td-actions">                                    
-                                                <a  asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">                                           
-                                                    <i class="material-icons purple-ic">edit</i>
-                                                </a>
-                                            </td>   
-                                        </tr>
+                                foreach (var item in Model.OperationCost)
+                                {
+                                    <tr>
+                                        <td>
+                                            @index
+                                        </td>
+                                        <td>
+                                            @item.Time
+                                        </td>
+                                        <td>
+                                            @item.Reason
+                                        </td>
+                                        <td>
+                                            @item.Amount
+                                        </td>
+                                        <td class="td-actions">
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">
+                                                <i class="material-icons purple-ic">edit</i>
+                                            </a>
+                                        </td>
+                                    </tr>
 
 
-                                        index++;
-                                    }
+                                    index++;
                                 }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
