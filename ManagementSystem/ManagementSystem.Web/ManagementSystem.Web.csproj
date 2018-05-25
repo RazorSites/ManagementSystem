@@ -20,7 +20,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Finance\" />
     <Folder Include="Pages\Product\Report\" />
     <Folder Include="Pages\Product\Team\" />
     <Folder Include="Pages\Product\" />

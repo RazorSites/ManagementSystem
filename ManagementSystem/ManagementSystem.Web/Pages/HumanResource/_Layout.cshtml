@@ -15,35 +15,23 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li id="dashboard_li" class="nav-item active">
-                    <a class="nav-link" asp-page="/Finance/Index">
+                    <a class="nav-link" asp-page="/HumanResource/Index">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li id="operation_cost_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./OperationCost/Index">
-                        <i class="material-icons">card_travel</i>
-                        <p>Operational Cost</p>
+                    <a class="nav-link" asp-page="/HumanResource/UserProfile/Index">
+                        <i class="material-icons">people</i>
+                        <p>Employee</p>
                     </a>
                 </li>
-                <li id="salary_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./AllowanceSalary/Index">
+                <li id="complaints_li" class="nav-item ">
+                    <a class="nav-link" asp-page="/HumanResource/Complaint/Index">
                         <i class="material-icons">attach_money</i>
-                        <p>Salaries &amp; Allowances</p>
+                        <p>Complaint &amp; Feedback</p>
                     </a>
                 </li>
-                @*<li id="report_li" class="nav-item ">
-                        <a class="nav-link" asp-page="./Report">
-                            <i class="material-icons">bug_report</i>
-                            <p>Reports</p>
-                        </a>
-                    </li>
-                    <li id="team_li" class="nav-item ">
-                        <a class="nav-link" asp-page="./Team">
-                            <i class="material-icons">people</i>
-                            <p>Teams</p>
-                        </a>
-                    </li>*@
                 <li id="analytics_li" class="nav-item ">
                     <a class="nav-link" asp-page="./Analytics/Index" asp-route-year="@DateTime.Now.Year">
                         <i class="material-icons">assessment</i>

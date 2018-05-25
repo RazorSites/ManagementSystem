@@ -5,82 +5,73 @@
     ViewData["Title"] = "Index";
 }
 
-@section Styles
-    {
-    <style>
-        body {
-            padding-top: 4em;
-        }
-    </style>
-}
-
-    <div class="row container-fluid">
-        <div class="col-lg-10 col-md-12">
-            <div class="card">
-                <div class="card-header card-header-tabs card-header-primary">
-                    <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                            <span class="nav-tabs-title">Complaints:</span>
-                            <ul class="nav nav-tabs" data-tabs="tabs">
-                                <li class="nav-item mr-1">
-                                    <a class="nav-link active show" href="#verifying" data-toggle="tab">
-                                        <i class="material-icons">cached</i> Verifying
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active show" href="#reviewed" data-toggle="tab">
-                                        <i class="material-icons">done_all</i> Reviewed
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+<div class="row container-fluid">
+    <div class="col-lg-10 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-tabs card-header-primary">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <span class="nav-tabs-title">Complaints:</span>
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item mr-1">
+                                <a class="nav-link active show" href="#verifying" data-toggle="tab">
+                                    <i class="material-icons">cached</i> Verifying
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active show" href="#reviewed" data-toggle="tab">
+                                    <i class="material-icons">done_all</i> Reviewed
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="verifying">
-                            <table class="table">
-                                <tbody>
-                                    @{
-                                        foreach (var item in Model.Complaint)
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="verifying">
+                        <table class="table">
+                            <tbody>
+                                @{
+                                    foreach (var item in Model.Complaint)
+                                    {
+                                        if (item.IsReviewed == false)
                                         {
-                                            if (item.IsReviewed == false)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        <form method="post">
-                                                            <input type="hidden" asp-for="@item.Id" />
+                                            <tr>
+                                                <td>
+                                                    <form method="post">
+                                                        <input type="hidden" asp-for="@item.Id" />
 
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input @Util.FuckOff(item) type="submit" value="Save" class="form-check-input">
-                                                                    <span class="form-check-sign">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </form>
-                                                    </td>
-                                                    <td  onclick="location.href = '@(Url.Content("Complaint/Details?id=" + item.Id))'">
-                                                        @item.Subject
-                                                    </td>
-                                                </tr>
-                                            }
+                                                        <div class="form-check">
+                                                            <label class="form-check-label">
+                                                                <input @Util.FuckOff(item) type="submit" value="Save" class="form-check-input">
+                                                                <span class="form-check-sign">
+                                                                    <span class="check"></span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                                <td onclick="location.href = '@(Url.Content("Complaint/Details?id=" + item.Id))'">
+                                                    @item.Subject
+                                                </td>
+                                            </tr>
                                         }
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="reviewed">
-                            <table class="table">
-                                <tbody>
-                                    @{
-                                        foreach (var item in Model.Complaint)
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="reviewed">
+                        <table class="table">
+                            <tbody>
+                                @{
+                                    foreach (var item in Model.Complaint)
+                                    {
+                                        if (item.IsReviewed == true)
                                         {
-                                            if (item.IsReviewed == true)
-                                            {
                                             <tr>
                                                 <td>
                                                     <div class="form-check">
@@ -97,18 +88,18 @@
                                                 </td>
                                             </tr>
 
-                                            }
                                         }
                                     }
-                                </tbody>
-                            </table>
-                        </div>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div>
-            <a asp-page="./Create" class="btn btn-primary pull-right">New Complaint</a>
-        </div>
     </div>
+
+    <div>
+        <a asp-page="./Create" class="btn btn-primary pull-right">New Complaint</a>
+    </div>
+</div>
