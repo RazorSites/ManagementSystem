@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.HumanResource.Complaint
+namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
         }
 
         [BindProperty]
-        public Data.Complaint Complaint { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,14 +29,15 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
                 return NotFound();
             }
 
-            Complaint = await _context.Complaints
-                .Include(c => c.ApplicationUser).SingleOrDefaultAsync(m => m.Id == id);
+            ApplicationUser = await _context.ApplicationUsers
+                .Include(a => a.JobPosition).SingleOrDefaultAsync(m => m.Id == id);
 
-            if (Complaint == null)
+            if (ApplicationUser == null)
             {
                 return NotFound();
             }
-           ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            ViewData["JobPosition"] = new SelectList(_context.JobPositions, "Id", "Name");
+
             return Page();
         }
 
@@ -47,7 +48,7 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
                 return Page();
             }
 
-            _context.Attach(Complaint).State = EntityState.Modified;
+            _context.Attach(ApplicationUser).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +56,7 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ComplaintExists(Complaint.Id))
+                if (!ApplicationUserExists(ApplicationUser.Id))
                 {
                     return NotFound();
                 }
@@ -68,9 +69,9 @@ namespace ManagementSystem.Web.Pages.HumanResource.Complaint
             return RedirectToPage("./Index");
         }
 
-        private bool ComplaintExists(Guid id)
+        private bool ApplicationUserExists(Guid id)
         {
-            return _context.Complaints.Any(e => e.Id == id);
+            return _context.ApplicationUsers.Any(e => e.Id == id);
         }
     }
 }

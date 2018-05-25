@@ -1,0 +1,259 @@
+﻿@page
+@model ManagementSystem.Web.Pages.HumanResource.UserProfile.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">Details Profile</h4>
+                    <p class="card-category">Information of employee</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ApplicationUser.Id" />
+                        <input type="hidden" asp-for="ApplicationUser.ConcurrencyStamp" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.FirstName" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.FirstName</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.LastName" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.LastName</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.IdentityCard" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.IdentityCard</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.YearOfBirth" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.YearOfBirth</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>
+                                    @Html.DisplayNameFor(model => model.ApplicationUser.IsLady)
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(model => model.ApplicationUser.IsLady)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.Address" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.Address</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.PhoneNumber" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.PhoneNumber</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.BaseSalary" class="control-label"></label>
+                                    <p class="form-control">@Model.ApplicationUser.BaseSalary</p>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label asp-for="ApplicationUser.JobPosition" class="control-label"></label>
+                                    <p class="form-control">@( Model.ApplicationUser.JobPosition != null ? Model.ApplicationUser.JobPosition.Name : "")</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a asp-page="./Edit" asp-route-id="@Model.ApplicationUser.Id" class="btn btn-purple pull-right">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@Model.ApplicationUser.Id" class="btn btn-danger pull-right">Delete</a>
+                        <a asp-page="./Index" class="btn btn-grey pull-right">Back</a>
+
+                    </form>
+
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-profile">
+                <p></p>
+                <div class="card-avatar">
+                    <a href="#pablo">
+                        <img class="img" src="~/img/marc.jpg">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                    <h4 class="card-title">Alec Thompson</h4>
+                    <p class="card-description">
+                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p>
+                    <a href="#pablo" class="btn btn-purple btn-round">Follow</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<h2>Details</h2>
+
+    <div>
+        <h4>ApplicationUser</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.IdentityCard)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.IdentityCard)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.IsLady)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.IsLady)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.YearOfBirth)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.YearOfBirth)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.NormalizedUserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.NormalizedUserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.NormalizedEmail)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.NormalizedEmail)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.EmailConfirmed)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.EmailConfirmed)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.PasswordHash)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.PasswordHash)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.SecurityStamp)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.SecurityStamp)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.ConcurrencyStamp)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.ConcurrencyStamp)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.PhoneNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.PhoneNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.PhoneNumberConfirmed)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.PhoneNumberConfirmed)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.TwoFactorEnabled)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.TwoFactorEnabled)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.LockoutEnd)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.LockoutEnd)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.LockoutEnabled)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.LockoutEnabled)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.AccessFailedCount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.AccessFailedCount)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser.JobPosition)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.JobPosition.Id)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.ApplicationUser.Id">Edit</a> |
+        <a asp-page="./Index">Back to List</a>
+    </div>*@

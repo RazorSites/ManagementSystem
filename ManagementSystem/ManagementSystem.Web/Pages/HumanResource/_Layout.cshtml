@@ -7,46 +7,29 @@
 
 <div class="wrapper">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-        <!--
-            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-            Tip 2: you can also add an image using data-image tag
-        -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+            <a href="" class="simple-text logo-normal">
+                Management System
             </a>
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li id="dashboard_li" class="nav-item active">
-                    <a class="nav-link" asp-page="/Product/Index">
+                    <a class="nav-link" asp-page="/HumanResource/Index">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li id="product_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Product">
-                        <i class="material-icons">card_travel</i>
-                        <p>Products</p>
-                    </a>
-                </li>
-                <li id="build_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Build">
-                        <i class="material-icons">build</i>
-                        <p>Builds</p>
-                    </a>
-                </li>
-                <li id="report_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Report">
-                        <i class="material-icons">bug_report</i>
-                        <p>Reports</p>
-                    </a>
-                </li>
-                <li id="team_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Team">
+                <li id="operation_cost_li" class="nav-item ">
+                    <a class="nav-link" asp-page="/HumanResource/UserProfile/Index">
                         <i class="material-icons">people</i>
-                        <p>Teams</p>
+                        <p>Employee</p>
+                    </a>
+                </li>
+                <li id="complaints_li" class="nav-item ">
+                    <a class="nav-link" asp-page="/HumanResource/Complaint/Index">
+                        <i class="material-icons">attach_money</i>
+                        <p>Complaint &amp; Feedback</p>
                     </a>
                 </li>
                 <li id="analytics_li" class="nav-item ">
@@ -63,11 +46,11 @@
                 </li>
 
                 @*<li class="nav-item active-pro">
-                    <a class="nav-link" href="../examples/upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li>*@
+                        <a class="nav-link" href="../examples/upgrade.html">
+                            <i class="material-icons">unarchive</i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>*@
             </ul>
         </div>
     </div>

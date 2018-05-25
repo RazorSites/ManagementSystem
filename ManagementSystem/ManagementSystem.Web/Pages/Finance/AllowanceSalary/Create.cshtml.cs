@@ -21,7 +21,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
         public IActionResult OnGet()
         {
         ViewData["AllowanceId"] = new SelectList(_context.Allowwances, "Id", "Id");
-        ViewData["SalaryId"] = new SelectList(_context.Salaries, "Id", "Id");
+        ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return Page();
         }
 

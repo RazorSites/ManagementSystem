@@ -1,48 +1,52 @@
 ﻿@page
 @model ManagementSystem.Web.Pages.Finance.AllowanceSalary.IndexModel
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h2>Allowances</h2>
+        <div class="align-self-center"><a asp-page="Create" class="btn btn-primary">New Allowance Record</a></div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.AllowanceSalary[0].Count)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.AllowanceSalary[0].ReceivedDay)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AllowanceSalary[0].Allowance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AllowanceSalary[0].Salary)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.AllowanceSalary) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReceivedDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Allowance.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salary.Id)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.AllowanceSalary[0].Allowance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AllowanceSalary[0].ApplicationUser)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.AllowanceSalary)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReceivedDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Allowance.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationUserId)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

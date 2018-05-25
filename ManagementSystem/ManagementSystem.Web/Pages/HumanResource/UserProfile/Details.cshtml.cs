@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
+namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
             _context = context;
         }
 
-        public Data.AllowanceSalary AllowanceSalary { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -27,11 +27,10 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
                 return NotFound();
             }
 
-            AllowanceSalary = await _context.AllowanceSalaries
-                .Include(a => a.Allowance)
-                .Include(a => a.ApplicationUser).SingleOrDefaultAsync(m => m.Id == id);
+            ApplicationUser = await _context.ApplicationUsers
+                .Include(a => a.JobPosition).SingleOrDefaultAsync(m => m.Id == id);
 
-            if (AllowanceSalary == null)
+            if (ApplicationUser == null)
             {
                 return NotFound();
             }

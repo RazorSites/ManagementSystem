@@ -81,15 +81,17 @@ namespace ManagementSystem.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Description = table.Column<string>(nullable: true)
+                    Created = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -143,10 +145,16 @@ namespace ManagementSystem.Web.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    BaseSalary = table.Column<decimal>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
-                    JobPositionId = table.Column<Guid>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    IdentityCard = table.Column<string>(nullable: false),
+                    IsLady = table.Column<bool>(nullable: false),
+                    JobPositionId = table.Column<Guid>(nullable: true),
+                    LastName = table.Column<string>(nullable: false),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -156,7 +164,8 @@ namespace ManagementSystem.Web.Migrations
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    YearOfBirth = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -166,24 +175,25 @@ namespace ManagementSystem.Web.Migrations
                         column: x => x.JobPositionId,
                         principalTable: "JobPositions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Build",
+                name: "Builds",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     ProductId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Build", x => x.Id);
+                    table.PrimaryKey("PK_Builds", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Build_Product_ProductId",
+                        name: "FK_Builds_Products_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Product",
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -220,15 +230,42 @@ namespace ManagementSystem.Web.Migrations
                 {
                     table.PrimaryKey("PK_ProductEnrollment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductEnrollment_Product_ProductId",
+                        name: "FK_ProductEnrollment_Products_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Product",
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ProductEnrollment_Team_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Team",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AllowanceSalaries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    AllowanceId = table.Column<Guid>(nullable: false),
+                    ApplicationUserId = table.Column<Guid>(nullable: false),
+                    Count = table.Column<int>(nullable: false),
+                    ReceivedDay = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AllowanceSalaries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AllowanceSalaries_Allowwances_AllowanceId",
+                        column: x => x.AllowanceId,
+                        principalTable: "Allowwances",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AllowanceSalaries_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -343,7 +380,7 @@ namespace ManagementSystem.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    ApplicationUserId = table.Column<Guid>(nullable: false),
+                    ApplicationUserId = table.Column<Guid>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     IsAnonymous = table.Column<bool>(nullable: false),
                     IsReviewed = table.Column<bool>(nullable: false),
@@ -357,26 +394,7 @@ namespace ManagementSystem.Web.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Salaries",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    ApplicationUserId = table.Column<Guid>(nullable: false),
-                    BaseSalary = table.Column<decimal>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Salaries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Salaries_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -418,36 +436,9 @@ namespace ManagementSystem.Web.Migrations
                 {
                     table.PrimaryKey("PK_Report", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Report_Build_BuildId",
+                        name: "FK_Report_Builds_BuildId",
                         column: x => x.BuildId,
-                        principalTable: "Build",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AllowanceSalaries",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    AllowanceId = table.Column<Guid>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
-                    ReceivedDay = table.Column<DateTime>(nullable: false),
-                    SalaryId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AllowanceSalaries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AllowanceSalaries_Allowwances_AllowanceId",
-                        column: x => x.AllowanceId,
-                        principalTable: "Allowwances",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AllowanceSalaries_Salaries_SalaryId",
-                        column: x => x.SalaryId,
-                        principalTable: "Salaries",
+                        principalTable: "Builds",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -458,9 +449,9 @@ namespace ManagementSystem.Web.Migrations
                 column: "AllowanceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AllowanceSalaries_SalaryId",
+                name: "IX_AllowanceSalaries_ApplicationUserId",
                 table: "AllowanceSalaries",
-                column: "SalaryId");
+                column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_ApplicationUserId",
@@ -512,8 +503,8 @@ namespace ManagementSystem.Web.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Build_ProductId",
-                table: "Build",
+                name: "IX_Builds_ProductId",
+                table: "Builds",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -540,12 +531,6 @@ namespace ManagementSystem.Web.Migrations
                 name: "IX_Report_BuildId",
                 table: "Report",
                 column: "BuildId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Salaries_ApplicationUserId",
-                table: "Salaries",
-                column: "ApplicationUserId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamEnrollment_ApplicationUserId",
@@ -606,25 +591,22 @@ namespace ManagementSystem.Web.Migrations
                 name: "Allowwances");
 
             migrationBuilder.DropTable(
-                name: "Salaries");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "ProjectBudgets");
 
             migrationBuilder.DropTable(
-                name: "Build");
-
-            migrationBuilder.DropTable(
-                name: "Team");
+                name: "Builds");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Team");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "JobPositions");

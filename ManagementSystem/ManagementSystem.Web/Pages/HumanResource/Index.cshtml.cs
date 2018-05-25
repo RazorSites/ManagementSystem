@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using ManagementSystem.Web.Data;
 
-namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
+namespace ManagementSystem.Web.Pages.HumanResource
 {
     public class IndexModel : PageModel
     {
@@ -18,13 +16,16 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
             _context = context;
         }
 
-        public IList<Data.AllowanceSalary> AllowanceSalary { get;set; }
+        public int CountEmployees { get; set; }
+        public int CountComplaints { get; set; }
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            AllowanceSalary = await _context.AllowanceSalaries
-                .Include(a => a.Allowance)
-                .Include(a => a.ApplicationUser).ToListAsync();
+            SidebarManager.OnPage(Pages.Page.Personnel);
+
+            CountEmployees = _context.ApplicationUsers.Count();
+            CountComplaints = _context.Complaints.Count();
         }
+
     }
 }

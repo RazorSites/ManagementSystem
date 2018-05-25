@@ -1,18 +1,16 @@
 ﻿@page
-@model ManagementSystem.Web.Pages.Finance.OperationCost.IndexModel
+@model ManagementSystem.Web.Pages.HumanResource.UserProfile.IndexModel
 
+@{
+    ViewData["Title"] = "Index";
+}
 
 <div class="container">
-    <div class="d-flex justify-content-between">
-        <h2>Operational Costs</h2>
-        <div class="align-self-center"><a asp-page="./Create" class="btn btn-primary">New Transaction</a></div>
-    </div>
-
     <div class="col-md-12">
         <div class="card card-plain">
             <div class="card-header card-header-primary">
-                <h4 class="card-title mt-0">Operation Cost Transactions</h4>
-                <p class="card-category">This table is all history operation cost transactions of company</p>
+                <h4 class="card-title mt-0">List Employees</h4>
+                <p class="card-category">This table is all employees of company</p>
             </div>
 
             <div class="card-body">
@@ -24,13 +22,16 @@
                                     Index
                                 </th>
                                 <th>
-                                    Time
+                                    FullName
                                 </th>
                                 <th>
-                                    Reason
+                                    Email
                                 </th>
                                 <th>
-                                    Amount
+                                    PhoneNumber
+                                </th>
+                                <th>
+                                    JobPosition
                                 </th>
                             </tr>
                         </thead>
@@ -38,20 +39,23 @@
                             @{
                                 int index = 1;
 
-                                foreach (var item in Model.OperationCost)
+                                foreach (var item in Model.ApplicationUser)
                                 {
-                                    <tr>
+                                    <tr onclick="location.href = '@(Url.Content("UserProfile/Details?id=" + item.Id))'"> @*FUCKOFF*@
                                         <td>
                                             @index
                                         </td>
                                         <td>
-                                            @item.Time
+                                            @(item.FirstName + " " + item.LastName)
                                         </td>
                                         <td>
-                                            @item.Reason
+                                            @item.Email
                                         </td>
                                         <td>
-                                            @item.Amount
+                                            @item.PhoneNumber
+                                        </td>
+                                        <td>
+                                            @( item.JobPosition != null ? item.JobPosition.Name : "")
                                         </td>
                                         <td class="td-actions">
                                             <a asp-page="./Edit" asp-route-id="@item.Id" title="Edit this transaction" class="btn btn-link btn-sm">
@@ -71,4 +75,3 @@
         </div>
     </div>
 </div>
-

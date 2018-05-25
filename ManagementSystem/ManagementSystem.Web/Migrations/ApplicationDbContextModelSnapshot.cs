@@ -41,17 +41,17 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<Guid>("AllowanceId");
 
+                    b.Property<Guid>("ApplicationUserId");
+
                     b.Property<int>("Count");
 
                     b.Property<DateTime>("ReceivedDay");
-
-                    b.Property<Guid>("SalaryId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AllowanceId");
 
-                    b.HasIndex("SalaryId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("AllowanceSalaries");
                 });
@@ -81,6 +81,10 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Address");
+
+                    b.Property<decimal>("BaseSalary");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -89,7 +93,18 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<Guid>("JobPositionId");
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("IdentityCard")
+                        .IsRequired();
+
+                    b.Property<bool>("IsLady");
+
+                    b.Property<Guid?>("JobPositionId");
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -113,6 +128,8 @@ namespace ManagementSystem.Web.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<int?>("YearOfBirth");
 
                     b.HasKey("Id");
 
@@ -152,7 +169,7 @@ namespace ManagementSystem.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("ApplicationUserId");
+                    b.Property<Guid?>("ApplicationUserId");
 
                     b.Property<string>("Content");
 
@@ -306,23 +323,6 @@ namespace ManagementSystem.Web.Migrations
                     b.ToTable("Report");
                 });
 
-            modelBuilder.Entity("ManagementSystem.Web.Data.Salary", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("ApplicationUserId");
-
-                    b.Property<decimal>("BaseSalary");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
-
-                    b.ToTable("Salaries");
-                });
-
             modelBuilder.Entity("ManagementSystem.Web.Data.Team", b =>
                 {
                     b.Property<Guid>("Id")
@@ -466,9 +466,9 @@ namespace ManagementSystem.Web.Migrations
                         .HasForeignKey("AllowanceId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ManagementSystem.Web.Data.Salary", "Salary")
+                    b.HasOne("ManagementSystem.Web.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("AllowanceSalaries")
-                        .HasForeignKey("SalaryId")
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -484,8 +484,7 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.HasOne("ManagementSystem.Web.Data.JobPosition", "JobPosition")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("JobPositionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("JobPositionId");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.Build", b =>
@@ -500,8 +499,7 @@ namespace ManagementSystem.Web.Migrations
                 {
                     b.HasOne("ManagementSystem.Web.Data.ApplicationUser", "ApplicationUser")
                         .WithMany("Complaints")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("ManagementSystem.Web.Data.PaymentMilestone", b =>
@@ -530,14 +528,6 @@ namespace ManagementSystem.Web.Migrations
                     b.HasOne("ManagementSystem.Web.Data.Build", "Build")
                         .WithMany("Reports")
                         .HasForeignKey("BuildId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ManagementSystem.Web.Data.Salary", b =>
-                {
-                    b.HasOne("ManagementSystem.Web.Data.ApplicationUser", "ApplicationUser")
-                        .WithOne("Salary")
-                        .HasForeignKey("ManagementSystem.Web.Data.Salary", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

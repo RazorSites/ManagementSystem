@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
+using Microsoft.AspNetCore.Routing;
 
-namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
+namespace ManagementSystem.Web.Pages.HumanResource.UserProfile
 {
     public class IndexModel : PageModel
     {
@@ -18,13 +19,12 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
             _context = context;
         }
 
-        public IList<Data.AllowanceSalary> AllowanceSalary { get;set; }
+        public IList<ApplicationUser> ApplicationUser { get;set; }
 
         public async Task OnGetAsync()
         {
-            AllowanceSalary = await _context.AllowanceSalaries
-                .Include(a => a.Allowance)
-                .Include(a => a.ApplicationUser).ToListAsync();
+            ApplicationUser = await _context.ApplicationUsers
+                .Include(a => a.JobPosition).ToListAsync();
         }
     }
 }

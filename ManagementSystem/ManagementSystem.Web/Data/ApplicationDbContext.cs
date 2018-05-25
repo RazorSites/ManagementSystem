@@ -27,7 +27,6 @@ namespace ManagementSystem.Web.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         #region Finance
-        public DbSet<Salary> Salaries { get; set; }
         public DbSet<Allowance> Allowwances { get; set; }
         public DbSet<AllowanceSalary> AllowanceSalaries { get; set; }
         public DbSet<ProjectBudget> ProjectBudgets { get; set; }

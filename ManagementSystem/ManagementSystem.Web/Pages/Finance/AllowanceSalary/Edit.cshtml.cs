@@ -31,14 +31,14 @@ namespace ManagementSystem.Web.Pages.Finance.AllowanceSalary
 
             AllowanceSalary = await _context.AllowanceSalaries
                 .Include(a => a.Allowance)
-                .Include(a => a.Salary).SingleOrDefaultAsync(m => m.Id == id);
+                .Include(a => a.ApplicationUser).SingleOrDefaultAsync(m => m.Id == id);
 
             if (AllowanceSalary == null)
             {
                 return NotFound();
             }
            ViewData["AllowanceId"] = new SelectList(_context.Allowwances, "Id", "Id");
-           ViewData["SalaryId"] = new SelectList(_context.Salaries, "Id", "Id");
+           ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
             return Page();
         }
 
