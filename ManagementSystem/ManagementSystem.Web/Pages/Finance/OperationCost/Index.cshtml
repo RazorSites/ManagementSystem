@@ -38,7 +38,7 @@
                             @{
                                 int index = 1;
 
-                                foreach (var item in Model.OperationCost)
+                                foreach (var item in Model.OperationCosts)
                                 {
                                     <tr>
                                         <td>
@@ -70,5 +70,66 @@
             </div>
         </div>
     </div>
+
+    <div class="">
+        <div class="d-flex justify-content-center">
+            <h3>Analytics</h3>
+        </div>
+
+        <div class="my-3">
+            <h3>Used Budget</h3>
+            <div id="usedBudget" class="ct-chart ct-golden-section"></div>
+            <div class="text-center"><p>@DateTime.UtcNow.Year</p></div>
+        </div>
+    </div>
 </div>
 
+@section Scripts {
+<script>
+        var data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            series: [
+                [
+                    @Model.UsedBudgetChartModelList[0].Amount,
+                    @Model.UsedBudgetChartModelList[1].Amount,
+                    @Model.UsedBudgetChartModelList[2].Amount,
+                    @Model.UsedBudgetChartModelList[3].Amount,
+                    @Model.UsedBudgetChartModelList[4].Amount,
+                    @Model.UsedBudgetChartModelList[5].Amount,
+                    @Model.UsedBudgetChartModelList[6].Amount,
+                    @Model.UsedBudgetChartModelList[7].Amount,
+                    @Model.UsedBudgetChartModelList[8].Amount,
+                    @Model.UsedBudgetChartModelList[9].Amount,
+                    @Model.UsedBudgetChartModelList[10].Amount,
+                    @Model.UsedBudgetChartModelList[11].Amount
+                ],
+            ]
+        };
+
+        var options = {
+            seriesBarDistance: 10,
+            chartPadding: 20,
+            //axisX: {
+            //    offset: 10
+            //},
+            axisY: {
+                labelInterpolationFnc: function (value) {
+                    return (value / 1000) + 'k';
+                }
+            }
+        };
+
+        var responsiveOptions = [
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 5,
+                axisX: {
+                    labelInterpolationFnc: function (value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+
+        new Chartist.Bar('#usedBudget', data, options, responsiveOptions);
+</script>
+}

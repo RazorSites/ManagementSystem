@@ -21,13 +21,13 @@
                     </a>
                 </li>
                 <li id="operation_cost_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./OperationCost/Index">
+                    <a class="nav-link" asp-page="/Finance/OperationCost/Index" asp-route-year="2018">
                         <i class="material-icons">card_travel</i>
                         <p>Operational Cost</p>
                     </a>
                 </li>
                 <li id="salary_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./AllowanceSalary/Index">
+                    <a class="nav-link" asp-page="/Finance/AllowanceSalary/Index">
                         <i class="material-icons">attach_money</i>
                         <p>Salaries &amp; Allowances</p>
                     </a>
@@ -45,7 +45,7 @@
                         </a>
                     </li>*@
                 <li id="analytics_li" class="nav-item ">
-                    <a class="nav-link" asp-page="./Analytics/Index" asp-route-year="@DateTime.Now.Year">
+                    <a class="nav-link" asp-page="/Finance/Analytics/Index" asp-route-year="@DateTime.Now.Year">
                         <i class="material-icons">assessment</i>
                         <p>Analytics</p>
                     </a>

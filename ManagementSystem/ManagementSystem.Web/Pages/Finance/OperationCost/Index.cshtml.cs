@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ManagementSystem.Web.Data;
+using ManagementSystem.Web.ViewModels;
 
 namespace ManagementSystem.Web.Pages.Finance.OperationCost
 {
@@ -18,11 +19,30 @@ namespace ManagementSystem.Web.Pages.Finance.OperationCost
             _context = context;
         }
 
-        public IList<Data.OperationCost> OperationCost { get;set; }
-
-        public async Task OnGetAsync()
+        public List<Data.OperationCost> OperationCosts { get; set; }
+        public List<UsedBudgetChartModel> UsedBudgetChartModelList { get; set; } = new List<UsedBudgetChartModel>();
+        public async Task OnGetAsync(int? year)
         {
-            OperationCost = await _context.OperationCosts.ToListAsync();
+            if (!year.HasValue)
+            {
+                year = DateTime.Now.Year;
+            }
+            OperationCosts = await _context.OperationCosts
+                .Where(cost => cost.Time.Year == year.Value)
+                .ToListAsync();
+
+            for (int i = 0; i <= 11; i++)
+            {
+                UsedBudgetChartModelList.Add(new UsedBudgetChartModel()
+                {
+                    Amount = 0
+                });
+            }
+
+            foreach(var cost in OperationCosts)
+            {
+                UsedBudgetChartModelList[cost.Time.Month - 1].Amount += cost.Amount;
+            }
         }
     }
 }

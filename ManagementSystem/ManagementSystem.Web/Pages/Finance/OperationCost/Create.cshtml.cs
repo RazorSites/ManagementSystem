@@ -36,7 +36,7 @@ namespace ManagementSystem.Web.Pages.Finance.OperationCost
             _context.OperationCosts.Add(OperationCost);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { year = 2018 });
         }
     }
 }
