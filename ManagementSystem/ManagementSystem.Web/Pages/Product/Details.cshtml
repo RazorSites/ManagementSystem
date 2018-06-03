@@ -71,7 +71,7 @@
                     {
                         <tr>
                             <td>
-                                <a asp-page="/Dashboard/Build/Details" asp-route-id="@item.Id">
+                                <a asp-page="./Build/Details" asp-route-id="@item.Id">
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </a>
                             </td>
@@ -79,8 +79,8 @@
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                <a asp-page="./Report/Create" asp-route-id="@item.Id">Add reports</a> |
-                                <a asp-page="./Build/Delete" asp-route-id="@item.Id">Delete</a>
+                                <a asp-page="./Report/Create" asp-route-buildid="@item.Id">Add reports</a> |
+                                <a asp-page="./Build/Delete" asp-route-buildid="@item.Id">Delete</a>
                             </td>
                         </tr>
                     }

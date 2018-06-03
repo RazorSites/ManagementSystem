@@ -45,6 +45,7 @@ namespace ManagementSystem.Web.Data
         #region Product Management
         public DbSet<Product> Products { get; set; }
         public DbSet<Build> Builds { get; set; }
+        public DbSet<ManagementSystem.Web.Data.Report> Reports { get; set; }
         #endregion
     }
 }

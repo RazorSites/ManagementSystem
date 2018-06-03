@@ -1,0 +1,104 @@
+﻿@page
+@model ManagementSystem.Web.Pages.Product.Build.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-md-start align-content-center">
+        <div>
+            <a asp-page="/Product/Details" asp-route-id="@Model.Build.ProductId"
+               class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        </div>
+        <h2 class="ml-2">Builds</h2>
+    </div>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Build.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Build.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Build.Created)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Build.Created)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Build.Product)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Build.Product.Id)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Build.Id">Edit</a> |
+    </div>
+
+    <hr />
+
+    <div class="">
+        <div class="d-flex justify-content-between">
+            <h2>Reports</h2>
+            <div class="align-self-center">
+                <a asp-page="./Report/Create" asp-route-productId="@Model.Build.Id"
+                   class="btn btn-primary waves-effect waves-light">New Report</a>
+            </div>
+        </div>
+        @if (Model.Reports.Count == 0)
+        {
+            <h4>There is no report recorded yet.</h4>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Reports[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Reports[0].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Reports[0].Description)
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Reports)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-page="./Build/Details" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a asp-page="./Report/Create" asp-route-buildid="@item.Id">Add reports</a> |
+                                <a asp-page="./Build/Delete" asp-route-buildid="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
